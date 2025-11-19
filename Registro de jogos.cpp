@@ -36,10 +36,10 @@ int main(void) {
         printf("3 - Listar todos\n");
         printf("4 - Mostrar numero de registros\n");
         printf("0 - Sair\n");
-        printf("Escolha uma dessas opções para continuar: ");
+        printf("Escolha um desses itens para continuar: ");
         
         if (scanf("%d", &opc) != 1) {
-            printf("Entrada inválida.\n");
+            printf("Entrada incorreta.\n");
             limpaBuffer();
             continue;
         }
@@ -55,7 +55,7 @@ int main(void) {
                 break;
             }
             case 0: printf("Saindo...\n"); break;
-            default: printf("Opção inválida.\n");
+            default: printf("Escolha Invalida, escolha um item valido.\n");
         }
     } while (opc != 0);
 
@@ -89,7 +89,7 @@ void cadastrar(FILE *fp) {
 
     printf("Ano de lancamento: ");
     if (scanf("%d", &j.ano) != 1) {
-        printf("Ano inválido.\n");
+        printf("Ano invalido.\n");
         limpaBuffer();
         return;
     }
@@ -116,14 +116,14 @@ void consultar(FILE *fp) {
     printf("Indice do registro (1 a %ld): ", n);
     long idx;
     if (scanf("%ld", &idx) != 1) {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         limpaBuffer();
         return;
     }
     limpaBuffer();
 
     if (idx < 1 || idx > n) {
-        printf("Indice inválido.\n");
+        printf("Indice invalido.\n");
         return;
     }
 
