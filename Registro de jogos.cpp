@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-using namespace std;
 
 #define ARQUIVO "jogos.dat"
 
@@ -9,9 +8,8 @@ typedef struct {
     char nome[50];
     char genero[30];
     int ano;
-    char tamanho[20];  
+    char tamanho[20];
 } Jogo;
-
 
 void limpaBuffer(void);
 long tamanho(FILE *fp);
@@ -22,12 +20,10 @@ void listar_todos(FILE *fp);
 int main(void) {
     FILE *fp;
 
-    
     fp = fopen(ARQUIVO, "r+b");
     if (fp == NULL) {
         fp = fopen(ARQUIVO, "w+b");
         if (fp == NULL) {
-            fprintf(stderr, "Erro: não foi possível abrir/criar o arquivo.\n");
             return 1;
         }
     }
@@ -41,6 +37,7 @@ int main(void) {
         printf("4 - Mostrar numero de registros\n");
         printf("0 - Sair\n");
         printf("Escolha uma dessas opções para continuar: ");
+        
         if (scanf("%d", &opc) != 1) {
             printf("Entrada inválida.\n");
             limpaBuffer();
@@ -98,11 +95,10 @@ void cadastrar(FILE *fp) {
     }
     limpaBuffer();
 
-    printf("Tamanho do jogo (exemplos:450MB,2GB): ");
+    printf("Tamanho do jogo (exemplos: 450MB, 2GB): ");
     fgets(j.tamanho, sizeof(j.tamanho), stdin);
     j.tamanho[strcspn(j.tamanho, "\n")] = '\0';
 
-    
     fseek(fp, 0, SEEK_END);
     fwrite(&j, sizeof(Jogo), 1, fp);
     fflush(fp);
